@@ -1,13 +1,10 @@
 package Clustering.util;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.LinkedList;
 
 
@@ -23,6 +20,7 @@ public class FileHelper {
 			BufferedReader br2 = new BufferedReader(fr2);
 			String line = null,truth=null;
 			while (null != (line = br1.readLine())&&null != (truth = br2.readLine())) {
+				line=line.trim();
 				Record record = new Record(line);
 				record.setValue("truth", truth);
 				recordList.add(record);
