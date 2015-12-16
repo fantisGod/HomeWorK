@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+import Clustering.util.DBSCAN;
 import Clustering.util.FileHelper;
 import Clustering.util.Kmeans;
 import Clustering.util.Record;
@@ -13,7 +14,8 @@ public class Cluster {
 
 	public static void main(String[] args) {
 		LinkedList<Record> recordList = FileHelper.readFile("input/dataset1.dat","input/dataset1-label.dat");
-		clusteringByKmeans(recordList);
+		//clusteringByKmeans(recordList);
+		clusteringByDBSCAN(recordList);
 	}
 	private static void clusteringByKmeans(LinkedList<Record> recordList){
 		Kmeans cluster =new Kmeans(15);
@@ -84,4 +86,10 @@ public class Cluster {
 		}
 		return f_core/(double)recordList.size();  
     }
+	
+	private static void clusteringByDBSCAN(LinkedList<Record> recordList){
+		HashMap<String, LinkedList<Record>> result=DBSCAN.clustering(50000,50,recordList);
+		System.out.println("Purity:"+getPurity(result,recordList));
+		System.out.println("F-score:"+getFscore(result,recordList));		
+	}
 }

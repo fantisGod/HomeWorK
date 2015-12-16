@@ -83,10 +83,10 @@ public class Kmeans {
 
 	private Record calMeans(LinkedList<Record> records) {
 		int num = records.size();
-		int totalX = 0, totalY = 0;
+		double totalX = 0, totalY = 0;
 		for (Record record : records) {
-			totalX += Integer.parseInt(record.getValue("x"));
-			totalY += Integer.parseInt(record.getValue("y"));
+			totalX += Double.parseDouble(record.getValue("x"));
+			totalY += Double.parseDouble(record.getValue("y"));
 		}
 		Record center = new Record(totalX / num + "", totalY / num + "");
 		return center;

@@ -21,6 +21,8 @@ public class DecisionTree {
 	private String search(Record record, TreeNode node) {
 		if (!node.isLeaf()) {
 			for (TreeNode child : node.getChildren()) {
+				if(node.getName().equals(""))
+					return "no";
 				if (record.getValue(node.getName()).equals(child.getValue())) {
 					return search(record, child);
 				}
